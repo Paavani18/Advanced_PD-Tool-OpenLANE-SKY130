@@ -172,8 +172,11 @@ report_checks -path_delay min_max -field {slew trans net cap input_pin} -format 
 Step-by-step all commands to run in openlane for above executed flow:
 
 docker
+
 ./flow.tcl -interactive
+
 package require openlane 0.9
+
 prep -design picorv32a
 
 echo $::env ([Varible]) // our case = SYNTH_STRATEGY
