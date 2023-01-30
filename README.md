@@ -168,7 +168,6 @@ report_checks -path_delay min_max -field {slew trans net cap input_pin} -format 
 
 
 
-
 Step-by-step all commands to run in openlane for above executed flow:
 
 docker
