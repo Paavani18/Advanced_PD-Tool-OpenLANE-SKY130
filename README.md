@@ -128,6 +128,15 @@ Reasons:
 
 ![image](https://user-images.githubusercontent.com/38167491/215580358-7a3f1cbe-b166-4476-9794-837044cd7eb4.png)
 
+```console
+Fall Transition Time [From 80% to 20%] : 2.24387e-09 - 2.18111e-09 = 0.06276e-09 second = 0.06276 nanosecond
+
+Similarly,
+Cell Rise Delay [50% of the rise]: Output - Input = 2.21073e-09 - 2.14994e-09 = 0.06079e-09 second = 0.06079 nanosecond
+
+Cell Fall Delay [50% of the fall]: 4.07758e-09 - 4.04994e-09 = 0.02764e-09 second = 0.02764 nanosecond
+
+```
 
 ![image](https://user-images.githubusercontent.com/38167491/215580396-18bf2f4c-2ae9-4f6b-b4b1-ba56921b5b41.png)
 
@@ -135,8 +144,11 @@ Reasons:
 
 ![image](https://user-images.githubusercontent.com/38167491/215580439-df9c162c-9b90-4973-93df-e953f34a0f5d.png)
 
+
+
 Lab steps to execute OpenSTA with right timing libraries and CTS
 
+```console
 openroad
 
 read_lef /openLANE_flow/designs/picorv32a/runs/28-01_15-09/tmp/merged.lef
@@ -164,14 +176,12 @@ set_propagated_clock [all_clocks]
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 report_checks -path_delay min_max -field {slew trans net cap input_pin} -format full_clock_expanded -digits 4
-
-
-\n
-
+```
 
 
 Step-by-step all commands to run in openlane for above executed flow:
 
+```console
 docker
 
 ./flow.tcl -interactive
@@ -186,38 +196,22 @@ echo $::env ([Varible]) // our case = SYNTH_STRATEGY
 set ::env(SYNTH_STRATEGY) "DELAY 0"
 
 run_synthesis
-
 init_floorplan
-
 place_io
-
 global_placement_or
-
 detailed_placement
-
 tap_decap_or
-
 detailed_placement
-
 run_cts
-
 gen_pdn
-
 run_routing
-
 run_magic
-
-
-
-
-```console
-Fall Transition Time [From 80% to 20%] : 2.24387e-09 - 2.18111e-09 = 0.06276e-09 second = 0.06276 nanosecond
-
-Similarly,
-Cell Rise Delay [50% of the rise]: Output - Input = 2.21073e-09 - 2.14994e-09 = 0.06079e-09 second = 0.06079 nanosecond
-
-Cell Fall Delay [50% of the fall]: 4.07758e-09 - 4.04994e-09 = 0.02764e-09 second = 0.02764 nanosecond
-
 ```
+
+
+
+
+
+
 
 
