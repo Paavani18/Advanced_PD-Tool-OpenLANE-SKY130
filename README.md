@@ -1,7 +1,7 @@
 # Advanced_PD-Tool-OpenLANE-SKY130
 This repository contains all the contents studied and created during the Advanced Physical Design Workshop using OpenLANE and SKY130 PDK
 
-OpenLane is representation of a RTL to GDSII flow which uses many opensource EDA tools like OpenRoad, Yosys, ABC, Fault, Qflow, Magic and a number of custom scripts for design exploration and optimization. And SKY130 is PDK used here.
+
 
 Table of Contents ::
 
@@ -15,3 +15,9 @@ Day 3 - Design library cell using Magic Layout and ngspice Characterization
 Day 4 - Pre-layout timing analysis and importance of good clock tree 
 
 Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
+
+Introduction to Openlane flow:
+OpenLane is representation of a RTL to GDSII flow which uses many opensource EDA tools like OpenRoad, Yosys, ABC, Fault, Qflow, Magic and a number of custom scripts for design exploration and optimization. And SKY130 is PDK used here.
+
+<img width="501" alt="image" src="https://user-images.githubusercontent.com/38167491/215576986-f393b6ca-4193-4410-88e1-3594d81b96c1.png">
+
