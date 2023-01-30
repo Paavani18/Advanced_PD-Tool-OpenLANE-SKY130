@@ -210,3 +210,14 @@ run_magic
 
 
 
+```console
+Fall Transition Time [From 80% to 20%] : 2.24387e-09 - 2.18111e-09 = 0.06276e-09 second = 0.06276 nanosecond
+
+Similarly,
+Cell Rise Delay [50% of the rise]: Output - Input = 2.21073e-09 - 2.14994e-09 = 0.06079e-09 second = 0.06079 nanosecond
+
+Cell Fall Delay [50% of the fall]: 4.07758e-09 - 4.04994e-09 = 0.02764e-09 second = 0.02764 nanosecond
+
+```
+
+
