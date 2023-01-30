@@ -37,6 +37,18 @@ prep -design:
 Synthesis:
 ![image](https://user-images.githubusercontent.com/38167491/215578260-ff705ac7-fdb1-4ba6-b4fd-4a2563c981de.png)
 
+Task 1:
+
+Find the Flop Ratio :
+
+Number of Cells = 14876
+
+Number of D-FF(sky130_fd_sc_hd__dfxtp_2) = 1613
+
+Hence, Flop Coount = 1613/14876 = 0.1084 :: 10.84%
+
+
+
 Floorplan:
 ![image](https://user-images.githubusercontent.com/38167491/215578701-25f9cc6d-6f81-43b8-965f-1f56e763a2ff.png)
 
@@ -61,6 +73,22 @@ Placement:
 
 
 Cell Design flow & Characterization :
+
+Step 1 : Read the models and tech files from the layout.
+
+Step 2 : Read the extracted SPICE Netlist.
+
+Step 3 : Define the behavior of the buffer.
+
+Step 4 : Read the sub-circuits of the inverters.
+
+Step 5 : Add the necessary power sources.
+
+Step 6 : Apply the stimulus.
+
+Step 7 : Provide necessary capacitances.
+
+Step 8 : Provide the necessary simulation command.
 
 ![image](https://user-images.githubusercontent.com/38167491/215579165-d42eacd0-bb62-46bb-9d67-eb5bfd734340.png)
 
@@ -107,10 +135,63 @@ Reasons:
 
 ![image](https://user-images.githubusercontent.com/38167491/215580439-df9c162c-9b90-4973-93df-e953f34a0f5d.png)
 
+Lab steps to execute OpenSTA with right timing libraries and CTS
+
+openroad
+
+read_lef /openLANE_flow/designs/picorv32a/runs/28-01_15-09/tmp/merged.lef
+
+read_def /openLANE_flow/designs/picorv32a/runs/28-01_15-09/results/cts/picorv32a.cts.def
+
+write_db pico_cts.db
+
+read_db pico_cts.db
+
+read_verilog /openLANE_flow/designs/picorv32a/runs/28-01_15-09/results/synthesis/picorv32a.synthesis_cts.v
+
+read_liberty -max $::env(LIB_SLOWEST)
+
+read_liberty -min $::env(LIB_FASTEST)
+
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+
+link_design picorv32a
+
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+set_propagated_clock [all_clocks]    
+
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+
+report_checks -path_delay min_max -field {slew trans net cap input_pin} -format full_clock_expanded -digits 4
 
 
 
 
+
+Step-by-step all commands to run in openlane for above executed flow:
+
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+
+echo $::env ([Varible]) // our case = SYNTH_STRATEGY
+// change the STRATEGY
+
+set ::env(SYNTH_STRATEGY) "DELAY 0"
+
+run_synthesis
+init_floorplan
+place_io
+global_placement_or
+detailed_placement
+tap_decap_or
+detailed_placement
+run_cts
+gen_pdn
+run_routing
+run_magic
 
 
 
