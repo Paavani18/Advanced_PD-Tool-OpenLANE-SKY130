@@ -166,6 +166,8 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 report_checks -path_delay min_max -field {slew trans net cap input_pin} -format full_clock_expanded -digits 4
 
 
+\n
+
 
 
 Step-by-step all commands to run in openlane for above executed flow:
@@ -184,16 +186,27 @@ echo $::env ([Varible]) // our case = SYNTH_STRATEGY
 set ::env(SYNTH_STRATEGY) "DELAY 0"
 
 run_synthesis
+
 init_floorplan
+
 place_io
+
 global_placement_or
+
 detailed_placement
+
 tap_decap_or
+
 detailed_placement
+
 run_cts
+
 gen_pdn
+
 run_routing
+
 run_magic
+
 
 
 
